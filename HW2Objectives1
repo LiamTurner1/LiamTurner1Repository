@@ -1,0 +1,18 @@
+Valid = False
+while Valid == False:
+    Valid = True
+    listy = str(input("please enter a series of compatible values, separated by spaces"))
+    listy = listy.split()
+    print(listy)
+    try:
+        for i in range(0, len(listy)):
+            listy[i] = int(listy[i])
+        value = int(input("please enter a value"))
+        same = "No, the value is not in your collection"
+        for i in range(0, len(listy)):
+            if value == listy[i]:
+                same = "Yes, the value is in your collection"
+        print(same)
+    except ValueError:
+        Valid = False
+        print("Numbers please")
