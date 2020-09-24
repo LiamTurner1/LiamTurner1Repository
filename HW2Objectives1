@@ -4,15 +4,28 @@ while Valid == False:
     listy = str(input("please enter a series of compatible values, separated by spaces"))
     listy = listy.split()
     print(listy)
-    try:
-        for i in range(0, len(listy)):
+
+    Number = False
+    for i in range(0, len(listy)):
+        try:
             listy[i] = int(listy[i])
-        value = int(input("please enter a value"))
-        same = "No, the value is not in your collection"
-        for i in range(0, len(listy)):
-            if value == listy[i]:
-                same = "Yes, the value is in your collection"
-        print(same)
-    except ValueError:
-        Valid = False
-        print("Numbers please")
+            Number = True
+        except ValueError:
+            Number = Number#I had to put something there
+
+    if Number == True:
+        try:
+            for i in range(0, len(listy)):
+                listy[i] = int(listy[i])
+            value = int(input("please enter a value"))
+        except ValueError:
+            Valid = False
+            print("Please enter compatible values")
+    else:
+        value = input("please enter a value")
+
+same = "No, the value is not in your collection"
+for i in range(0, len(listy)):
+     if value == listy[i]:
+        same = "Yes, the value is in your collection"
+print(same)
