@@ -1,0 +1,49 @@
+def readfile():
+    listy = []
+    try:
+        filename = input('what file would you like to read?')
+        with open (filename, 'r') as file:
+            listy = file.read()
+        return listy
+    except FileNotFoundError:
+        print("File does not exist. Make sure you include correct suffix")
+        listy = '0 K Then'#incompatible types will trigger the while Valid loop
+        return listy
+
+Valid = False
+while Valid == False:
+    Valid = True
+    listy = str(input("please enter a series of compatible values, separated by spaces, or type 'y' for enter filename"))
+    if listy == 'y':
+        listy = readfile()
+    try:
+        listy = listy.split()
+    except AttributeError:
+        for i in range(0, len(listy)):
+            listy[i] = listy[i].split()
+    print(listy)
+
+    Number = False
+    for i in range(0, len(listy)):
+        try:
+            listy[i] = int(listy[i])
+            Number = True
+        except ValueError:
+            Number = Number#I had to put something there
+
+    if Number == True:
+        try:
+            for i in range(0, len(listy)):
+                listy[i] = int(listy[i])
+            value = int(input("please enter a value"))
+        except ValueError:
+            Valid = False
+            print("Please enter compatible values")
+    else:
+        value = input("please enter a value")
+
+same = "No, the value is not in your collection"
+for i in range(0, len(listy)):
+     if value == listy[i]:
+        same = "Yes, the value is in your collection"
+print(same)
