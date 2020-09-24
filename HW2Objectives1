@@ -8,7 +8,7 @@ while Valid == False:
     Number = False
     for i in range(0, len(listy)):
         try:
-            listy[i] = int(listy[i])
+            listy[i] = float(listy[i])
             Number = True
         except ValueError:
             Number = Number#I had to put something there
@@ -17,7 +17,7 @@ while Valid == False:
         try:
             for i in range(0, len(listy)):
                 listy[i] = int(listy[i])
-            value = int(input("please enter a value"))
+            value = float(input("please enter a value"))
         except ValueError:
             Valid = False
             print("Please enter compatible values")
