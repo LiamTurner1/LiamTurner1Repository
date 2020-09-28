@@ -1,0 +1,72 @@
+import random
+def readfile():
+    listy = []
+    try:
+        filename = input('what file would you like to read?')
+        with open (filename, 'r') as file:
+            listy = file.read()
+        return listy
+    except FileNotFoundError:
+        print("File does not exist. Make sure you include correct suffix")
+        listy = '0 K Then'#incompatible types will trigger the while Valid loop
+        return listy
+
+def makefile():
+    listy = []
+    Filename = 'Megafile.txt'
+    with open (Filename, 'w+') as file:
+        NumOrWord = random.randint(0,1)
+        if NumOrWord == 0:
+            for i in range (0,1000000):
+                a = random.randint(1,1000000)
+                file.writerow(a)
+        else:
+            with open('engmix.txt', 'r') as file2:
+                words = file2.read().split('\n')
+                file2.close
+            for i in range (0,1000000):
+                 a = random.randint(3, 84000099)
+                 word = words[a]
+                 file.writerow(word)
+        listy = file.read().split('\n')
+    return listy
+
+Valid = False
+while Valid == False:
+    Valid = True
+    listy = str(input("please enter a series of compatible values, separated by spaces, or type 'y' for enter filename, or type 'z' for create random Megafile"))
+    if listy == 'y':
+        listy = readfile()
+    if listy == 'z':
+        listy = makefile()
+    try:
+        listy = listy.split()
+    except AttributeError:
+        for i in range(0, len(listy)):
+            listy[i] = listy[i].split()
+    print(listy)
+
+    Number = False
+    for i in range(0, len(listy)):
+        try:
+            listy[i] = float(listy[i])
+            Number = True
+        except ValueError:
+            Number = Number#I had to put something there
+
+    if Number == True:
+        try:
+            for i in range(0, len(listy)):
+                listy[i] = float(listy[i])
+            value = float(input("please enter a value"))
+        except ValueError:
+            Valid = False
+            print("Please enter compatible values")
+    else:
+        value = input("please enter a value")
+
+same = "No, the value is not in your collection"
+for i in range(0, len(listy)):
+     if value == listy[i]:
+        same = "Yes, the value is in your collection"
+print(same)
